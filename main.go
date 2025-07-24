@@ -5,6 +5,7 @@ package main
 
 import (
 	"mystanford/config"
+	"mystanford/database"
 	"mystanford/folder"
 	"mystanford/logger"
 	"mystanford/server"
@@ -14,6 +15,7 @@ func init() {
 	logger.InitLogger()
 	folder.InitFolder()
 	config.InitConfig()
+	database.InitDatabase()
 	server.InitServer()
 }
 

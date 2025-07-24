@@ -9,4 +9,5 @@ import (
 func InitServer() {
 	Server = fiber.New()
 	Server.Use(fiberlogger.New(), recover.New())
+	AddRoutes()
 }
