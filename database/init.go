@@ -6,6 +6,7 @@ import (
 	"mystanford/logger"
 	"os"
 
+	"gorm.io/driver/mysql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -15,6 +16,8 @@ func InitDatabase() {
 	switch config.NowConfig.Database.Type {
 	case "sqlite":
 		DB, e = gorm.Open(sqlite.Open(config.NowConfig.Database.Dsn))
+	case "mysql":
+		DB, e = gorm.Open(mysql.Open(config.NowConfig.Database.Dsn))
 	default:
 		e = errors.New("不支持的数据库类型: " + config.NowConfig.Database.Type + " !")
 	}
