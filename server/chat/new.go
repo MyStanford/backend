@@ -67,13 +67,15 @@ func NewChatRoute(ctx *fiber.Ctx) error {
 		})
 	}
 	newChat.ChatID = utils.UUID()
+	temp := float32(0.6)
 	var agentModel model.ToolCallingChatModel
 	switch newChat.Model.Type {
 	case "openai":
 		agentModel, _ = openai.NewChatModel(context.Background(), &openai.ChatModelConfig{
-			BaseURL: newChat.Model.Path,
-			APIKey:  newChat.Model.Key,
-			Model:   newChat.Model.Model,
+			BaseURL:     newChat.Model.Path,
+			APIKey:      newChat.Model.Key,
+			Model:       newChat.Model.Model,
+			Temperature: &temp,
 		})
 	default:
 		return ctx.JSON(fiber.Map{
